@@ -11,13 +11,16 @@ public class Marco extends Character {
 	public void draw () {
 		app.fill(168, 14, 225);
 		app.circle(posX, posY, TAM);
+		
+		if(app.second() % 2 == 0) {
+			app.text("Marco",posX, posY);
+		}
 	}
 	
-	public void mov() {
-
-		posX += 1 * dirBounceX;
-		posY += 1 * dirBounceY;
-
+	private void mov() {
+		posX += 2 * dirBounceX;
+		posY += 2 * dirBounceY;
+		
 		if (posX < 0 || posX > app.width) { // si llega a bordes de lados
 			dirBounceX *= -1;
 		}
@@ -29,11 +32,10 @@ public class Marco extends Character {
 
 	@Override
 	public void run() {
-		try {
+		 mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start
+		 try {
 			  Thread.sleep(2000);
-			  mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start
-			  //System.out.println("funciono");
-			  
+			  message();
 		} catch (InterruptedException e) {
 			 e.printStackTrace();
 		}
@@ -41,9 +43,9 @@ public class Marco extends Character {
 	
 	public void message () {
 		if(app.second() % 2 == 0) {
-			app.text("Marco",posX, posY);
+			System.out.println("marco");
+			//app.text("Marco",posX, posY);
 		}
-		
 	}
 	
 	// Los getter y setter para ponder comunicar en el mundo

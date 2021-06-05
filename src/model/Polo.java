@@ -2,7 +2,7 @@ package model;
 
 import processing.core.PApplet;
 
-public class Polo extends Character {
+public class Polo extends Character  {
 
 	public Polo(float posX, float posY, PApplet app) {
 		super(posX, posY, app);
@@ -12,9 +12,13 @@ public class Polo extends Character {
 		app.fill(14, 225, 131);
 		app.noStroke();
 		app.circle(posX, posY, TAM);
+		
+		if(app.second() % 2 == 0) {
+			app.text(+(int)posX+","+(int)posY+" ", posX, posY);
+		}
 	}
 
-	public void mov() {
+	private void mov() {
 
 		posX += 1 * dirBounceX;
 		posY += 1 * dirBounceY;
@@ -30,16 +34,22 @@ public class Polo extends Character {
 
 	@Override
 	public void run() {
+		mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start
 		try {
 			  Thread.sleep(2000);
-			  mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start
-			 // System.out.println("funciono");
-			  
+			  message();
 		} catch (InterruptedException e) {
 			 e.printStackTrace();
 		}
 	}
-
+	
+	public void message () {
+		if(app.second() % 2 == 0) {
+			System.out.println("Polo " +(int)posX+","+(int)posY+" ");
+			//app.text("Polo " +(int)posX+","+(int)posY+" ", posX, posY);
+		}
+	}
+	
 	// Los getter y setter para ponder comunicar en el mundo
 	public float getPosX() {
 		return posX;

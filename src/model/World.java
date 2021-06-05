@@ -1,8 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-
-import controlP5.FrameRate;
 import processing.core.PApplet;
 
 public class World {
@@ -27,35 +25,45 @@ public class World {
 	
 	public void draw() {
 		marco.draw();
-		marco.message();
+		movMarco();
 		new Thread (marco).start(); //Llamo al run de marco
 		
 		for (Polo politos : polos) {
 			politos.draw();
-			//politos.mov();
 			new Thread(politos).start(); //con run corre, pero no como el hilo aparte, con start sí
-		}
-		
-		movMarco();
+		}	
 	}
-	
 	
 	
 	//todo el movimiento de perseguir
 	public void movMarco () {
 		
-		for (int i = 0; i <polos.size(); i++) {
-			if(PApplet.dist(marco.getPosX(),marco.getPosY(),polos.get(i).posX, polos.get(i).getPosY())<20) {//Distancia entre polo y marco es pequeña
-				polos.remove(i);
+		int distMP = 700;
+		int calculateDistMP = 0;
+		int positions = 0;
+		
+		if(polos.size() == 0) {
+			marco.setDirBounceX(0);
+			marco.setDirBounceY(0);
+		}
+		
+		for(int i = 0; i < polos.size();i++) {
+			calculateDistMP = (int) PApplet.dist(marco.getPosX(), marco.getPosY(), polos.get(i).getPosX(), polos.get(i).getPosY());
+			if(calculateDistMP < distMP) {
+				distMP = calculateDistMP;
+				positions = i;
 			}
 		}
 		
-		
-		try {						
-			
-		} catch (IndexOutOfBoundsException e) {
+		try {
+			if(PApplet.dist(marco.getPosX(),marco.getPosY(),polos.get(positions).posX, polos.get(positions).getPosY())<20) {//Distancia entre polo y marco es pequeña
+				polos.remove(positions);
+			}
+		}
+		catch(IndexOutOfBoundsException e) {
 			e.getLocalizedMessage();
 		}
+
 	}
 }
 
