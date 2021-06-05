@@ -30,7 +30,14 @@ public class Polo extends Character {
 
 	@Override
 	public void run() {
-		mov();
+		try {
+			  Thread.sleep(2000);
+			  mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start
+			 // System.out.println("funciono");
+			  
+		} catch (InterruptedException e) {
+			 e.printStackTrace();
+		}
 	}
 
 	// Los getter y setter para ponder comunicar en el mundo

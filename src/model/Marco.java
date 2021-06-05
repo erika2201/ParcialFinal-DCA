@@ -32,7 +32,7 @@ public class Marco extends Character {
 		try {
 			  Thread.sleep(2000);
 			  mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start
-			  System.out.println("funciono");
+			  //System.out.println("funciono");
 			  
 		} catch (InterruptedException e) {
 			 e.printStackTrace();
@@ -54,6 +54,14 @@ public class Marco extends Character {
 
 		public int getDirBounceY() {
 			return dirBounceY;
+		}
+		
+		public void setDirBounceX(int dirBounceX) {
+			this.dirBounceX = dirBounceX;
+		}
+		
+		public void setDirBounceY(int dirBounceY) {
+			this.dirBounceY = dirBounceY;
 		}
 
 
