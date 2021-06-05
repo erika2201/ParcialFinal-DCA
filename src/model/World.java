@@ -40,35 +40,18 @@ public class World {
 	//todo el movimiento de perseguir
 	public void movMarco () {
 		
-		int distM = 700;
-		int arrayPos = 0;
-		
-		if(polos.size() == 0) {
-			marco.setDirBounceX(0);
-			marco.setDirBounceY(0);
-		}
-		
 		for (int i = 0; i <polos.size(); i++) {
-			if(PApplet.dist(marco.getPosX(),marco.getPosY(),polos.get(i).posX, polos.get(i).getPosY())<700) {//Distancia entre marco y polo dentro de lienzo
-				distM = 0;
-				arrayPos = i; 
+			if(PApplet.dist(marco.getPosX(),marco.getPosY(),polos.get(i).posX, polos.get(i).getPosY())<20) {//Distancia entre polo y marco es pequeña
+				polos.remove(i);
 			}
 		}
 		
 		
-		try {			
-			if(PApplet.dist(marco.getPosX(), marco.getPosY(), polos.get(arrayPos).getPosX(), polos.get(arrayPos).getPosY()) < 20) {
-				polos.remove(arrayPos);
-			}
-			
-			
+		try {						
 			
 		} catch (IndexOutOfBoundsException e) {
 			e.getLocalizedMessage();
 		}
-		
-		System.out.println(distM);
-		System.out.println(arrayPos);
 	}
 }
 
