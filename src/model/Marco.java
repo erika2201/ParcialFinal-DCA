@@ -27,9 +27,25 @@ public class Marco extends Character {
 		if (posY < 0 || posY > app.height) { // Si llega a bordes de arriba o abajo
 			dirBounceY *= -1;
 		}
+	
 	}
-		
+	
 
+		
+	public void mov2(float poloX, float poloY) {
+		
+		dirBounceX= (int) (poloX-this.posX);
+		dirBounceY= (int) (poloY-this.posY);
+		
+		float dist = (float) Math.sqrt(dirBounceX * dirBounceX + dirBounceY * dirBounceY); 
+		if(dist != 0.0) {
+			dirBounceX /= dist;
+			dirBounceY /= dist;
+		}
+		
+		
+	}
+	
 	@Override
 	public void run() {
 		 mov(); //al llamarlo acá, solo basta llamar run en el mundo, y no al mov, run lo llamo con start

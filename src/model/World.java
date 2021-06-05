@@ -37,7 +37,6 @@ public class World {
 	
 	//todo el movimiento de perseguir
 	public void movMarco () {
-		
 		int distMP = 700;
 		int calculateDistMP = 0;
 		int positions = 0;
@@ -54,14 +53,32 @@ public class World {
 				positions = i;
 			}
 		}
+		if(PApplet.dist(marco.getPosX(),marco.getPosY(),polos.get(positions).posX, polos.get(positions).getPosY())<20) {//Distancia entre polo y marco es pequeña
+			polos.remove(positions);
+		}
+		
+		if(polos.get(positions).getPosX() == marco.getPosX() && polos.get(positions).getPosY() < marco.getPosY()) {
+			marco.setDirBounceX(0);
+			marco.setDirBounceY(-1);
+		}
+		else if(polos.get(positions).getPosX() > marco.getPosX() && polos.get(positions).getPosY() < marco.getPosY()) {
+			marco.setDirBounceX(1);
+			marco.setDirBounceY(-1);
+		}
+		else if(polos.get(positions).getPosX() > marco.getPosX() && polos.get(positions).getPosY() == marco.getPosY()) {
+			marco.setDirBounceX(1);
+			marco.setDirBounceY(0);
+		}
+		else if(polos.get(positions).getPosX() > marco.getPosX() && polos.get(positions).getPosY() > marco.getPosY()) {
+			marco.setDirBounceX(1);
+			marco.setDirBounceY(1);	
+		}
 		
 		try {
-			if(PApplet.dist(marco.getPosX(),marco.getPosY(),polos.get(positions).posX, polos.get(positions).getPosY())<20) {//Distancia entre polo y marco es pequeña
-				polos.remove(positions);
-			}
+			Polo element = polos.get(polos.size()-1);
 		}
-		catch(IndexOutOfBoundsException e) {
-			e.getLocalizedMessage();
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("fin");
 		}
 
 	}
