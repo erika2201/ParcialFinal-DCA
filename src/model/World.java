@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import controlP5.FrameRate;
 import processing.core.PApplet;
 
 public class World {
@@ -26,6 +27,7 @@ public class World {
 	
 	public void draw() {
 		marco.draw();
+		marco.message();
 		new Thread (marco).start(); //Llamo al run de marco
 		
 		for (Polo politos : polos) {
@@ -36,6 +38,8 @@ public class World {
 		
 		movMarco();
 	}
+	
+	
 	
 	//todo el movimiento de perseguir
 	public void movMarco () {

@@ -4,13 +4,13 @@ import model.World;
 import processing.core.PApplet;
 
 public class Controller {
-	private World logic;
+	private World world;
 	
 	public Controller(PApplet app) {
-		logic = new World(app);
+		world = new World(app);
 	}
 	
 	public void draw() {
-		logic.draw();
+		world.draw();
 	}
 }

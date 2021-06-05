@@ -39,6 +39,13 @@ public class Marco extends Character {
 		}
 	}
 	
+	public void message () {
+		if(app.second() % 2 == 0) {
+			app.text("Marco",posX, posY);
+		}
+		
+	}
+	
 	// Los getter y setter para ponder comunicar en el mundo
 		public float getPosX() {
 			return posX;
